@@ -14,6 +14,9 @@ BOT_NAME = 'zhidao'
 SPIDER_MODULES = ['zhidao.spiders']
 NEWSPIDER_MODULE = 'zhidao.spiders'
 
+DOWNLOAD_DELAY = 5
+RANDMIZE_DOWNLOAD_DELAY = True
+METAREFRESH_MAXDELAY = 100
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'zhidao (+http://www.yourdomain.com)'
@@ -61,9 +64,9 @@ NEWSPIDER_MODULE = 'zhidao.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'zhidao.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'zhidao.pipelines.ZhidaoPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
