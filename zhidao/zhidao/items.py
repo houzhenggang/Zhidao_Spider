@@ -43,6 +43,18 @@ class ZhiDaoU(Item):
     number_of_questions = Field(
         output_processor = TakeFirst()
         ) #提问数
+    skilled_in_fields = Field(
+        input_processor = MapCompose(unicode.strip),
+        output_processor = Join() 
+        ) #擅长领域
+    zhidao_gift = Field(
+        input_processor = MapCompose(unicode.strip),
+        output_processor = Join() 
+        ) #勋章
+    zhidao_anwlist = Field(
+        input_processor = MapCompose(unicode.strip),
+        output_processor = Join() 
+        ) #回答记录
 
 class ZhiDaoQ(Item):
     qid = Field()  # 问题id
