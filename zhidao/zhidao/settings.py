@@ -33,7 +33,7 @@ METAREFRESH_MAXDELAY = 100
 #CONCURRENT_REQUESTS_PER_IP=16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED=False
+COOKIES_ENABLED=False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED=False
@@ -52,9 +52,12 @@ METAREFRESH_MAXDELAY = 100
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'zhidao.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    #'zhidao.middlewares.MyCustomDownloaderMiddleware': 543,
+    'misc.middleware.CustomUserAgentMiddleware': 400,
+    #'misc.middleware.ProxyMiddleware': 401,
+    'misc.middleware.ProxyMiddleware2': 401,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
