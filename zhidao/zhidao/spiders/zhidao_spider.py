@@ -13,10 +13,17 @@ import json
 import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+<<<<<<< 5acc8f00c6ee0367caf609fbba95ea94c7dd241a
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 #import selenium.webdriver.support.ui as ui
 from scrapy.http import TextResponse 
+=======
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+#import selenium.webdriver.support.ui as ui
+from scrapy.http import TextResponse, HtmlResponse
+>>>>>>> TimeoutException
 import time
 
 def generate_uid(user_name):
@@ -44,7 +51,12 @@ class ZhidaoSpider(Spider):
         dispatcher.connect(self.spider_closed, signals.spider_closed)
     
     def spider_closed(self, spider):
+<<<<<<< 5acc8f00c6ee0367caf609fbba95ea94c7dd241a
         self.driver.close()
+=======
+        #self.driver.close()
+        self.driver.quit()
+>>>>>>> TimeoutException
     
     #def __del__(self):
     #    self.browser.close()
@@ -59,6 +71,7 @@ class ZhidaoSpider(Spider):
             #next = self.driver.find_element_by_link_text("\u4e0b\u4e00\u9875")
             #next = WebDriverWait(self.driver, 10).until(
             #    EC.visibility_of_element_located((By.LINK_TEXT, "\u4e0b\u4e00\u9875")))
+<<<<<<< 5acc8f00c6ee0367caf609fbba95ea94c7dd241a
             next = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.LINK_TEXT, "5")))
             try:
@@ -67,6 +80,24 @@ class ZhidaoSpider(Spider):
                 break
   
         response = TextResponse(url=response.url, body=self.driver.page_source, encoding='utf-8')
+=======
+            try:
+                next = WebDriverWait(self.driver, 10).until(
+                    EC.visibility_of_element_located((By.LINK_TEXT, u'\u4e0b\u4e00\u9875')))  #Unicode 前加u''
+            #try:
+            #if (next):
+                print "------------------find next-------------"
+                next.click()
+                time.sleep(5)
+            except:
+                break
+        
+  
+        response = HtmlResponse(url=response.url, body=self.driver.page_source, encoding='utf-8')
+        
+        #from scrapy.shell import inspect_response  
+        #inspect_response(response, self)  
+>>>>>>> TimeoutException
         
         u_loader = ItemLoader(item = ZhiDaoU(), response = response)
         u_loader.add_value('url', response.url)
